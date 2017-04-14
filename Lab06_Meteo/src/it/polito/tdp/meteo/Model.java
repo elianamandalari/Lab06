@@ -3,6 +3,7 @@ package it.polito.tdp.meteo;
 import java.util.List;
 
 import it.polito.tdp.meteo.bean.SimpleCity;
+import it.polito.tdp.meteo.db.MeteoDAO;
 
 public class Model {
 
@@ -16,8 +17,11 @@ public class Model {
 	}
 
 	public String getUmiditaMedia(int mese) {
-
-		return "TODO!";
+        String result="";
+        MeteoDAO dao=new MeteoDAO();
+        for(String localita: dao.getCitta())
+          result+= "Localita:  "+localita+"  Umidita Media: "+dao.getAvgRilevamentiLocalitaMese(mese, localita)+"\n";
+       return result;
 	}
 
 	public String trovaSequenza(int mese) {
