@@ -36,6 +36,7 @@ public class MeteoController {
     
 	@FXML
 	void doCalcolaSequenza(ActionEvent event) {
+		txtResult.appendText("Mese "+boxMese.getValue()+"\n"+"Sequenza città nei primi 15 gg del mese : \n"+model.trovaSequenza(boxMese.getValue()));
 
 	}
 

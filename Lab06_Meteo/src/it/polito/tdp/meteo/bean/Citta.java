@@ -74,5 +74,10 @@ public class Citta {
 	public String toString() {
 		return nome;
 	}
+
+	public void decreaseCounter() {
+		// TODO Auto-generated method stub
+		this.counter-=1;
+	}
 	
 }

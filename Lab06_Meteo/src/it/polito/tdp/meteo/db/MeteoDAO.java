@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import it.polito.tdp.meteo.bean.Citta;
 import it.polito.tdp.meteo.bean.Rilevamento;
 
 public class MeteoDAO {
@@ -99,28 +100,25 @@ public class MeteoDAO {
 		}
 	}
 
-	public List<String> getCitta() {
-		final String sql= "SELECT localita "+
-				"FROM situazione "+
-				"GROUP BY localita ";
-		List<String> citta=new ArrayList<String>();
+public List<Citta> getCitta() {
 		
+		String sql="SELECT localita "+ 
+		"From situazione "+
+	    "Group by localita ";
+		List<Citta> lista=new ArrayList<Citta>();
 		try {
 			Connection conn = DBConnect.getInstance().getConnection();
 			PreparedStatement st = conn.prepareStatement(sql);
-
 			ResultSet rs = st.executeQuery();
-		
 
-			while(rs.next()) {
-               citta.add(rs.getString("localita"));
+			while (rs.next()) {
+				Citta c = new Citta(rs.getString("localita"));
+				lista.add(c);
 			}
-
 			conn.close();
-			return citta;
+			return lista;
 
 		} catch (SQLException e) {
-
 			e.printStackTrace();
 			throw new RuntimeException(e);
 		}
